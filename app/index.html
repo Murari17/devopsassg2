@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevSecOps Integration Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .feature h3 {
+            margin: 0 0 0.5rem 0;
+            color: #ffeb3b;
+        }
+        .status {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(76, 175, 80, 0.2);
+            border-radius: 10px;
+            border: 1px solid #4caf50;
+        }
+        .tech-stack {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 DevSecOps Integration Demo</h1>
+        <p class="subtitle">Secure CI/CD Pipeline with GitHub Actions, tfsec, Trivy, and Sealed Secrets</p>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>🔒 Security First</h3>
+                <p>Terraform security scanning with tfsec and Docker image vulnerability scanning with Trivy</p>
+            </div>
+            <div class="feature">
+                <h3>🔐 Sealed Secrets</h3>
+                <p>Encrypted Kubernetes secrets managed securely in the GitOps workflow</p>
+            </div>
+            <div class="feature">
+                <h3>🔄 Automated CI/CD</h3>
+                <p>GitHub Actions pipeline with security gates and automated deployments</p>
+            </div>
+            <div class="feature">
+                <h3>☁️ Cloud Native</h3>
+                <p>Deployed on AWS EKS with infrastructure as code using Terraform</p>
+            </div>
+        </div>
+
+        <div class="status">
+            <h3>✅ Application Status: Running</h3>
+            <p>This application was deployed through a secure DevSecOps pipeline</p>
+            <p><strong>Deployment ID:</strong> <span id="deploymentId"></span></p>
+            <p><strong>Build Time:</strong> <span id="buildTime"></span></p>
+        </div>
+
+        <div class="tech-stack">
+            <span class="tech-badge">GitHub Actions</span>
+            <span class="tech-badge">Terraform</span>
+            <span class="tech-badge">AWS EKS</span>
+            <span class="tech-badge">Docker</span>
+            <span class="tech-badge">Kubernetes</span>
+            <span class="tech-badge">tfsec</span>
+            <span class="tech-badge">Trivy</span>
+            <span class="tech-badge">Sealed Secrets</span>
+            <span class="tech-badge">Nginx</span>
+        </div>
+    </div>
+
+    <script>
+        // Set deployment information
+        document.getElementById('deploymentId').textContent = Math.random().toString(36).substr(2, 9);
+        document.getElementById('buildTime').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html>

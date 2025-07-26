@@ -1,0 +1,29 @@
+# Trivy configuration
+format: table
+severity:
+  - HIGH
+  - CRITICAL
+exit-code: 1
+ignore-unfixed: true
+timeout: 5m
+
+db:
+  skip-update: false
+
+secret:
+  config: |
+    rules:
+      - id: AWS
+        category: AWS
+        title: AWS Access Key
+        regex: AKIA[0-9A-Z]{16}
+        keywords:
+          - aws
+          - key
+      - id: GitHub
+        category: GitHub
+        title: GitHub Personal Access Token
+        regex: ghp_[0-9a-zA-Z]{36}
+        keywords:
+          - github
+          - token

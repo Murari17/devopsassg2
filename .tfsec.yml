@@ -1,0 +1,20 @@
+# tfsec configuration
+config:
+  severity_overrides:
+    - rule: aws-s3-block-public-acls
+      severity: ERROR
+    - rule: aws-s3-block-public-policy
+      severity: ERROR
+    - rule: aws-s3-ignore-public-acls
+      severity: ERROR
+    - rule: aws-s3-no-public-read
+      severity: ERROR
+    - rule: aws-s3-no-public-read-write
+      severity: ERROR
+
+  exclude:
+    # Exclude rules that may not apply to our use case
+    - aws-s3-encryption-customer-key  # We might use AWS managed keys
+
+  include_passed: false
+  include_ignored: false

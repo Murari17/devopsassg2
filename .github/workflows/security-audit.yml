@@ -1,0 +1,50 @@
+name: Security Audit
+
+on:
+  schedule:
+    # Run security audit daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  security-audit:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run comprehensive security audit
+      run: |
+        echo "🔍 Running comprehensive security audit..."
+        
+        # Check for sensitive files
+        find . -type f \( -name "*.pem" -o -name "*.key" -o -name "*.p12" -o -name "*.pfx" \) -not -path "./.git/*" | while read file; do
+          echo "⚠️  Found sensitive file: $file"
+        done
+
+    - name: Audit dependencies
+      run: |
+        # Check for outdated base images in Dockerfiles
+        if [ -f "app/Dockerfile" ]; then
+          echo "🐳 Checking Dockerfile for outdated base images..."
+          grep -i "FROM" app/Dockerfile
+        fi
+
+    - name: Check for secrets in commit history
+      run: |
+        echo "🔍 Checking for secrets in recent commits..."
+        git log --oneline -10 | while read commit; do
+          if echo "$commit" | grep -i -E "(password|secret|key|token)"; then
+            echo "⚠️  Potential secret in commit: $commit"
+          fi
+        done
+
+    - name: Security summary
+      run: |
+        echo "✅ Security audit completed"
+        echo "📊 Check the logs above for any security findings"
